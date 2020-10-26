@@ -7,6 +7,6 @@ using namespace std;
 
 int checkMonth(int month, int year);
 
-std::string calculatedFutureDate(std::string command);
+std::string calculatedFutureDate();
 
 #endif

@@ -10,9 +10,11 @@ int main(int argc, char *argv[]) {
         cout << "Enter command \n";
         cin >> command;
         if(command.substr(0, 2) == "-f"){
-            cout << calculatedFutureDate(command);
+            cout << calculatedFutureDate();
         }
-        // This is reserved for Lucas's method. Lucas will need to make a class for the methods for his function.
+        // This is reserved for Lucas's method.
+        // Lucas will need to make a class for
+        // the methods for his function.
         //if(){
         //}
     }

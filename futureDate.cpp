@@ -27,13 +27,19 @@ int checkMonth(int month, int year){
     return endDay;
 }
 
-std::string calculatedFutureDate(std::string command){
-    cout << command;
-    string date = command.substr(3, 10);
+std::string calculatedFutureDate(){
+    std::string date = "";
+    cout << "Enter date. \n";
+    cin >> date;
+    //string date = command.substr(3, 10);
     int year = std::stoi(date.substr(0, 4));
     int month = std::stoi(date.substr(5, 2));
     int day = std::stoi(date.substr(8, 2));
-    int daysPast = std::stoi(command.substr(11, 10));
+
+    std::string amountOfDays = "";
+    cout << "Enter number of days(format must be in yyyy/mm/dd). \n";
+    cin >> amountOfDays;
+    int daysPast = std::stoi(amountOfDays);
 
     while(daysPast / 365 >= 1 || daysPast / 366 >= 1){
         if(year % 4 == 0){
@@ -58,5 +64,9 @@ std::string calculatedFutureDate(std::string command){
     }
 
     day = day + daysPast;
-    return "New Date: ";
+
+    std::string newYear = std::to_string(year);
+    std::string newMonth = std::to_string(month);
+    std::string newDay = std::to_string(day);
+    return "New Date: " + newYear + "/" + newMonth + "/" + newDay + "\n";
 }
