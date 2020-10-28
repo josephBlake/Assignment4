@@ -6,13 +6,16 @@ using namespace std;
 
 class DateManager {
 public:
-  DateManager();
+  DateManager(string date);
 
   int checkMonth(int month, int year);
 
-  string calculateFutureDate();
+  string calculateFutureDate(int daysPast);
 
-  ~DateManager();    
+  ~DateManager();
+
+private:
+  string date;    
 };
 
 #endif

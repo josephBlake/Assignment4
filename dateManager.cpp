@@ -3,9 +3,9 @@
 
 using namespace std;
 
-DateManager::DateManager()
+DateManager::DateManager(string date)
 {
-
+  this->date = date;
 }
 
 int DateManager::checkMonth(int month, int year)
@@ -37,20 +37,12 @@ int DateManager::checkMonth(int month, int year)
   return endDay;
 }
 
-string DateManager::calculateFutureDate()
+string DateManager::calculateFutureDate(int daysPast)
 {
-  std::string date = "";
-  cout << "Enter date. \n";
-  cin >> date;
   //string date = command.substr(3, 10);
   int year = std::stoi(date.substr(0, 4));
   int month = std::stoi(date.substr(5, 2));
   int day = std::stoi(date.substr(8, 2));
-
-  std::string amountOfDays = "";
-  cout << "Enter number of days(format must be in yyyy/mm/dd). \n";
-  cin >> amountOfDays;
-  int daysPast = std::stoi(amountOfDays);
 
   while(daysPast / 365 >= 1 || daysPast / 366 >= 1)
   {
