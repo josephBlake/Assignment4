@@ -12,9 +12,6 @@
 
 
 
-
-
-
 // Tests for stories 3 and 4 By Alexander Blake
 // TODO Finish the tests.
 
@@ -23,24 +20,24 @@
 TEST(DateManagerTest, FutureDate) {
    // Test Year Changes
    DateManager * dateManager = new DateManager("1999/08/09");
-   EXPECT_EQ("New Date: 2000/8/9", dateManager->calculateFutureDate(365));
+   EXPECT_EQ("New Date: 2000/8/9\n", dateManager->calculateFutureDate(365));
    dateManager = new DateManager("2000/08/09");
-   EXPECT_EQ("New Date: 2001/8/9", dateManager->calculateFutureDate(366));
+   EXPECT_EQ("New Date: 2001/8/9\n", dateManager->calculateFutureDate(366));
    // Test Month Changes
-   EXPECT_EQ("", dateManager->calculateFutureDate());
-   EXPECT_EQ("", dateManager->calculateFutureDate());
+   //EXPECT_EQ("", dateManager->calculateFutureDate());
+   //EXPECT_EQ("", dateManager->calculateFutureDate());
    // Test Day Changes
-   EXPECT_EQ("", dateManager->calculateFutureDate());
-   EXPECT_EQ("", dateManager->calculateFutureDate());
+   //EXPECT_EQ("", dateManager->calculateFutureDate());
+   //EXPECT_EQ("", dateManager->calculateFutureDate());
    // Test More Than One Change
-   EXPECT_EQ("", dateManager->calculateFutureDate());
-   EXPECT_EQ("", dateManager->calculateFutureDate());
+   //EXPECT_EQ("", dateManager->calculateFutureDate());
+   //EXPECT_EQ("", dateManager->calculateFutureDate());
 }
 
 // Tests that program can properly give the correct day of the week when given a date.
-TEST(DateManagerTest, FutureDate) {
+//TEST(DateManagerTest, FutureDate) {
    
-}
+//}
 
 
 // TODO Delete commented previous tests later. Keep for now as reminder of test formatting.
