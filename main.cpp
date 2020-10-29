@@ -12,6 +12,10 @@ int main(int argc, char *argv[]) {
     cout << "Enter command" << endl;;
     cin >> command;
 
+    if(command == "quit"){
+      break;
+    }
+
     string date = "";
     cout << "Enter date (format must be in yyyy/mm/dd)" << endl;
     cin >> date;
@@ -32,7 +36,7 @@ int main(int argc, char *argv[]) {
         // the methods for his function.
         //if(){
         //}
-    }
+  }
 }
 
 
