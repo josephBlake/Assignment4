@@ -12,6 +12,8 @@ public:
 
   string calculateFutureDate(int daysPast);
 
+  string dayOfTheWeek();
+
   ~DateManager();
 
 private:

@@ -29,7 +29,12 @@ int main(int argc, char *argv[]) {
       cin >> days;
 
       string futureDate = dateManager->calculateFutureDate(days);
-      cout << futureDate;
+      cout << futureDate << "\n";
+    }
+
+    if(command.substr(0, 2) == "-w"){
+      string weekDay = dateManager->dayOfTheWeek();
+      cout << weekDay << "\n";
     }
         // This is reserved for Lucas's method.
         // Lucas will need to make a class for
