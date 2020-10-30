@@ -124,7 +124,67 @@ string DateManager::dayOfTheWeek(){
 
 int DateManager::getDateDifference(string secondDate)
 {
-  return 5;
+  int days = 0;
+
+  int firstYear = std::stoi(date.substr(0, 4));
+  int firstMonth = std::stoi(date.substr(5, 2));
+  int firstDay = std::stoi(date.substr(8, 2));
+
+  int secondYear = std::stoi(secondDate.substr(0, 4));
+  int secondMonth = std::stoi(secondDate.substr(5, 2));
+  int secondDay = std::stoi(secondDate.substr(8, 2));
+
+
+  int yearsPast = secondYear - firstYear;
+  if (yearsPast < 0)
+  {
+    return -1;
+  } 
+  else if (yearsPast == 0 && (secondMonth - firstMonth) < 0)
+  {
+    return -1;
+  }
+  else if (yearsPast == 0 && (secondMonth - firstMonth) == 0 && (secondDay - firstDay) < 0)
+  {
+    return -1;
+  }
+
+  days += yearsPast == 0 ? 0 : (yearsPast - 1) * 365;
+
+  int currentMonth = firstMonth;
+  int currentYear = yearsPast == 0 ? secondYear : secondYear - 1;
+
+  if (firstMonth == secondMonth && currentYear == secondYear)
+  {
+    days += secondDay - firstDay;
+  }
+  else
+  {
+    while (currentMonth != secondMonth || currentYear != secondYear)
+    {
+      if (currentMonth == firstMonth)
+      {
+        days += checkMonth(currentMonth, currentYear) - firstDay;
+      }
+      else
+      {
+        days += checkMonth(currentMonth, currentYear);      
+      }
+
+      if (currentMonth == 12)
+      {
+        currentMonth = 1;
+        currentYear++;
+      }
+      else
+      {
+        currentMonth++;
+      }
+    }
+    days += secondDay; 
+  }
+
+  return days;
 }
 
 DateManager::~DateManager()
