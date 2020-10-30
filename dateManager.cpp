@@ -91,9 +91,35 @@ string DateManager::calculateFutureDate(int daysPast)
 }
 
 // This method is the main function for the -w command in the program. This method returns what day of the week a given date is in.
-// TODO Finish this method
 string DateManager::dayOfTheWeek(){
-  return "";
+  int year = std::stoi(date.substr(0, 4));
+  int month = std::stoi(date.substr(5, 2));
+  int day = std::stoi(date.substr(8, 2));
+
+  std::tm theTime = {0, 0, 0, day, month, year};
+  std::time_t dayFilter = std::mktime(&theTime);
+  std::tm * filteredTime = std::localtime(&dayFilter);
+
+  int theDay = ((filteredTime->tm_wday) + 3) % 7;
+
+  std::string dayName = "";
+  if(theDay == 0){
+    dayName = "Sunday";
+  } else if(theDay == 1){
+    dayName = "Monday";
+  } else if(theDay == 2){
+    dayName = "Tuesday";
+  } else if(theDay == 3){
+    dayName = "Wednesday";
+  } else if(theDay == 4){
+    dayName = "Thursday";
+  } else if(theDay == 5){
+    dayName = "Friday";
+  } else if(theDay == 6){
+    dayName = "Saturday";
+  }
+  
+  return "The Day Of The Week " + dayName;
 }
 
 int DateManager::getDateDifference(string secondDate)
