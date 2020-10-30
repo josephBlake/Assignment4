@@ -1,5 +1,6 @@
 #include "dateManager.h"
 #include <iostream>
+#include <regex>
 
 using namespace std;
 
@@ -93,6 +94,11 @@ string DateManager::calculateFutureDate(int daysPast)
 // TODO Finish this method
 string DateManager::dayOfTheWeek(){
   return "";
+}
+
+int DateManager::getDateDifference(string secondDate)
+{
+  return 5;
 }
 
 DateManager::~DateManager()

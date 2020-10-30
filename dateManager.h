@@ -14,6 +14,8 @@ public:
 
   string dayOfTheWeek();
 
+  int getDateDifference(string secondDate);
+
   ~DateManager();
 
 private:
