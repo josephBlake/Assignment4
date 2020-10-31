@@ -1,26 +1,31 @@
+// File By Alexander Blake and Lucas Larocco
 #include "dateManager.h"
 #include <iostream>
 #include <regex>
 
 using namespace std;
 
+// Constructor Made By Lucas Larocco
 // This is the constructor which will store a date for method usage.
 DateManager::DateManager(string date)
 {
   this->date = date;
 }
 
-// The purpose of this method is to check what the end day of a month is based a date's current month.
+// Method done by Alexander Blake, though Lucas helped adopt the method into a class.
+// The purpose of this method is to check what the end day
+// of a month is based a date's current month.
 int DateManager::checkMonth(int month, int year)
 {
+  // The last day of a month.
   int endDay = 0;
 
-  // Each number represents their corresponding month of the year. So this means 1 is January, 5 is May, 12 is December, and so on.
+  // Each number represents their corresponding month of the year.
+  // So this means 1 is January, 5 is May, 12 is December, and so on.
   if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
   {
     endDay = 31;
   }
-
   if(month == 4 || month == 6 || month == 9 || month == 11)
   {
     endDay = 30;
@@ -42,14 +47,17 @@ int DateManager::checkMonth(int month, int year)
   return endDay;
 }
 
-// This method is the main function for the -f command in the program. This method returns what date it will be after a certain amount of days after a given date.
+// Method Done By Alexander Blake, though Lucas helped adopt the method into a class.
+// This method is the main function for the -f command in the program.
+// This method returns what date it will be after a certain amount of days after a given date.
 string DateManager::calculateFutureDate(int daysPast)
 {
   int year = std::stoi(date.substr(0, 4));
   int month = std::stoi(date.substr(5, 2));
   int day = std::stoi(date.substr(8, 2));
 
-  // This loop checks how many, if any, years have passed in order to shrink the amount of days past.
+  // This loop checks how many, if any, years have
+  //  passed in order to shrink the amount of days past.
   while(daysPast / 365 >= 1 || daysPast / 366 >= 1)
   {
     if(year % 4 == 0)
@@ -64,7 +72,8 @@ string DateManager::calculateFutureDate(int daysPast)
     }
   }
 
-  // This loop checks how many, if any, months have passed in order to shrink the amount of days past.
+  // This loop checks how many, if any, months have
+  //  passed in order to shrink the amount of days past.
   while((day + daysPast) > checkMonth(month, year))
   {
     int daysToNextMonth = (checkMonth(month, year) - day) + 1;
@@ -81,7 +90,8 @@ string DateManager::calculateFutureDate(int daysPast)
     daysPast = daysPast - daysToNextMonth;
   }
 
-  // After checking that the amount of days past will no longer bring the date to a new month, the rest is simply added to the day part of the date.
+  // After checking that the amount of days past will no
+  // longer bring the date to a new month, the rest is simply added to the day part of the date.
   day = day + daysPast;
 
   std::string newYear = std::to_string(year);
@@ -90,18 +100,26 @@ string DateManager::calculateFutureDate(int daysPast)
   return "New Date: " + newYear + "/" + newMonth + "/" + newDay;
 }
 
-// This method is the main function for the -w command in the program. This method returns what day of the week a given date is in.
+// Method Done By Alexander Blake
+// This method is the main function for the -w command in the program.
+// This method returns what day of the week a given date is in.
 string DateManager::dayOfTheWeek(){
   int year = std::stoi(date.substr(0, 4));
   int month = std::stoi(date.substr(5, 2));
   int day = std::stoi(date.substr(8, 2));
 
+  //  The tm object can help calcalute the day of the week using a given date,
+  //  however, it doesn't do it automatically once the date variables have been declared in it.
+  //  Which is why I am using the tm to make a time_t obejct and then bakc into a tm object again.
   std::tm theTime = {0, 0, 0, day, month, year};
   std::time_t dayFilter = std::mktime(&theTime);
   std::tm * filteredTime = std::localtime(&dayFilter);
 
+  //  The calculated day fo the week by itself is strangely always off by three days,
+  //  but with a simple constant that can be fixed.
   int theDay = ((filteredTime->tm_wday) + 3) % 7;
 
+  // Finally just need to get the day name out of the given weekday number.
   std::string dayName = "";
   if(theDay == 0){
     dayName = "Sunday";
@@ -122,6 +140,7 @@ string DateManager::dayOfTheWeek(){
   return "The Day Of The Week " + dayName;
 }
 
+// Method Done By Lucas Larocco
 //Gets the amount of days between two dates
 int DateManager::getDateDifference(string secondDate)
 {

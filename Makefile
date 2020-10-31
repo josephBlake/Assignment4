@@ -1,5 +1,5 @@
-# makefile for Date Manage code
-# Alexander Blake
+# makefile for Date Manager code
+# File done by Alexander Blake and all parts involving dateManager done by Lucas Larocco.
 
 all: dateCalc
 
@@ -8,9 +8,6 @@ test: date_test
 
 dateManager.o: dateManager.h dateManager.cpp
 	g++ -std=c++14 -Wall -c dateManager.cpp
-
-#futureDate.o: futureDate.h futureDate.cpp
-#	g++ -std=c++14 -Wall -c futureDate.cpp
 
 date_test.o: dateManager.h date_test.cpp
 	g++ -std=c++14 -Wall -c date_test.cpp
