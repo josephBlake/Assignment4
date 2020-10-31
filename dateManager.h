@@ -1,3 +1,4 @@
+// File By Alexander Blake and Lucas Larocco
 #include <string>
 #ifndef DATEMANAGER_H_
 #define DATEMANAGER_H_
