@@ -91,9 +91,22 @@ TEST(DateManagerTest, FutureDate)
 }
 
 // Tests that program can properly give the correct day of the week when given a date.
-//TEST(DateManagerTest, DayOfTheWeek) {
-   
-//}
+TEST(DateManagerTest, DayOfTheWeek) {
+   DateManager * dateManager = new DateManager("2018-05-06");
+   EXPECT_EQ("The Day Of The Week Sunday", dateManager->dayOfTheWeek());
+   dateManager = new DateManager("2019-07-08");
+   EXPECT_EQ("The Day Of The Week Monday", dateManager->dayOfTheWeek());
+   dateManager = new DateManager("2018-12-11");
+   EXPECT_EQ("The Day Of The Week Tuesday", dateManager->dayOfTheWeek());
+   dateManager = new DateManager("2020-05-20");
+   EXPECT_EQ("The Day Of The Week Wednesday", dateManager->dayOfTheWeek());
+   dateManager = new DateManager("2020-01-30");
+   EXPECT_EQ("The Day Of The Week Thursday", dateManager->dayOfTheWeek());
+   dateManager = new DateManager("2020-10-30");
+   EXPECT_EQ("The Day Of The Week Friday", dateManager->dayOfTheWeek());
+   dateManager = new DateManager("2019-03-23");
+   EXPECT_EQ("The Day Of The Week Saturday", dateManager->dayOfTheWeek());
+}
 
 
 // TODO Delete commented previous tests later. Keep for now as reminder of test formatting.
