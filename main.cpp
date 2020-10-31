@@ -70,7 +70,14 @@ int main(int argc, char *argv[]) {
           if (isValidDate(secondDate))
           {
             int differenceInDays = dateManager->getDateDifference(secondDate);
-	    cout << differenceInDays << " days" << endl;
+            if (differenceInDays == -1)
+            {
+              cout << "The Second Date is Before the First Date" << endl;
+            }
+            else
+            {
+              cout << differenceInDays << " days" << endl; 
+            }
           }
           else
           {

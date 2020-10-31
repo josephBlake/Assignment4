@@ -3,7 +3,21 @@
 #include <gtest/gtest.h>
 
 // Tests for stories 1 and 2 By Lucas Larocco
-
+TEST(DateManagerTest, DateDifference)
+{
+  DateManager * dateManager = new DateManager("2020-03-19");
+  //Valid dates
+  //Same Month
+  EXPECT_EQ(5, dateManager->getDateDifference("2020-03-24"));
+  //Next Month
+  EXPECT_EQ(27, dateManager->getDateDifference("2020-04-15"));
+  EXPECT_EQ(38, dateManager->getDateDifference("2020-04-26"));
+  //More Than One Month
+  EXPECT_EQ(209, dateManager->getDateDifference("2020-10-14"));
+  EXPECT_EQ(221, dateManager->getDateDifference("2020-10-26"));
+  
+  //Out of order dates
+}
 
 
 
@@ -17,7 +31,8 @@
 
 // Tests that program can properly calculate future date based
 // on amount of days and given initlal date.
-TEST(DateManagerTest, FutureDate) {
+TEST(DateManagerTest, FutureDate) 
+{
    // Test Year Changes
    DateManager * dateManager = new DateManager("1999/08/09");
    EXPECT_EQ("New Date: 2000/8/9", dateManager->calculateFutureDate(365));
@@ -108,7 +123,8 @@ TEST(DateManagerTest, FutureDate) {
 //}
 
 // Main method for running all tests
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
    ::testing::InitGoogleTest(&argc, argv);
    return RUN_ALL_TESTS();
 }
