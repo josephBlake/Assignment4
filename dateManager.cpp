@@ -122,6 +122,7 @@ string DateManager::dayOfTheWeek(){
   return "The Day Of The Week " + dayName;
 }
 
+//Gets the amount of days between two dates
 int DateManager::getDateDifference(string secondDate)
 {
   int days = 0;
@@ -136,41 +137,47 @@ int DateManager::getDateDifference(string secondDate)
 
 
   int yearsPast = secondYear - firstYear;
+  //If the second year is before the first, the second date is older.
   if (yearsPast < 0)
   {
     return -1;
   } 
-  else if (yearsPast == 0 && (secondMonth - firstMonth) < 0)
+  else if (yearsPast == 0 && (secondMonth - firstMonth) < 0) //If the years are the same but the second month is before the first, the second date is older.
   {
     return -1;
   }
-  else if (yearsPast == 0 && (secondMonth - firstMonth) == 0 && (secondDay - firstDay) < 0)
+  else if (yearsPast == 0 && (secondMonth - firstMonth) == 0 && (secondDay - firstDay) < 0) //If the year and month is the same but the second day is before the first day, the second date is older.
   {
     return -1;
   }
 
+  //For each full year that is passed add 365 days.
   days += yearsPast == 0 ? 0 : (yearsPast - 1) * 365;
 
   int currentMonth = firstMonth;
+  //For the remaining year we are either in the final year or the year before it.
   int currentYear = yearsPast == 0 ? secondYear : secondYear - 1;
 
+  //If we are in the same year and the same month to start off we just add the days between the first and second day and we are done
   if (firstMonth == secondMonth && currentYear == secondYear)
   {
     days += secondDay - firstDay;
   }
   else
   {
+    //Loop through the remaining months adding the days past in each month
     while (currentMonth != secondMonth || currentYear != secondYear)
     {
+      //We do not go through the full first month so we subtract however many days have already passed.
       if (currentMonth == firstMonth)
       {
         days += checkMonth(currentMonth, currentYear) - firstDay;
       }
-      else
+      else //Add the number of days in the month if we went through the whole month
       {
         days += checkMonth(currentMonth, currentYear);      
       }
-
+      //Increment the current month and if we go to a new year increment current year and set the month to 1.
       if (currentMonth == 12)
       {
         currentMonth = 1;
@@ -181,6 +188,7 @@ int DateManager::getDateDifference(string secondDate)
         currentMonth++;
       }
     }
+    //Add the reamining days in the final month.
     days += secondDay; 
   }
 

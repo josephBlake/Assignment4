@@ -90,6 +90,7 @@ int main(int argc, char *argv[]) {
   }
 }
 
+//Check if a command is included in the list of possible commands.
 bool isValidCommand(string command)
 {
   for (string cmd: possibleCommands)
@@ -102,11 +103,13 @@ bool isValidCommand(string command)
   return false;
 }
 
+//Checks if a date matches the regex used for each date.
 bool isValidDate(string date)
 {
   return regex_match(date, std::regex("[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]"));
 }
 
+//Turns a string into an integer and makes sure it is a valid integer. A value of -1 is returned if the integer is not valid.
 int getIntegerFromString(string days)
 {
   istringstream s(days);
@@ -124,6 +127,7 @@ int getIntegerFromString(string days)
   return value;
 }
 
+//Print the menu with all the commands with their descriptions.
 void printHelpMenu()
 {
   cout << "\nCommand Menu \n" << endl;
