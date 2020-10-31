@@ -19,24 +19,24 @@
 // on amount of days and given initlal date.
 TEST(DateManagerTest, FutureDate) {
    // Test Year Changes
-   DateManager * dateManager = new DateManager("1999/08/09");
+   DateManager * dateManager = new DateManager("1999-08-09");
    EXPECT_EQ("New Date: 2000/8/9", dateManager->calculateFutureDate(365));
-   dateManager = new DateManager("2000/08/09");
+   dateManager = new DateManager("2000-08-09");
    EXPECT_EQ("New Date: 2001/8/9", dateManager->calculateFutureDate(366));
    // Test Month Changes
-   dateManager = new DateManager("1999/08/09");
+   dateManager = new DateManager("1999-08-09");
    EXPECT_EQ("New Date: 1999/11/17", dateManager->calculateFutureDate(100));
-   dateManager = new DateManager("2008/01/31");
+   dateManager = new DateManager("2008-01-31");
    EXPECT_EQ("New Date: 2008/3/1", dateManager->calculateFutureDate(30));
    // Test Day Changes
-   dateManager = new DateManager("2014/05/15");
+   dateManager = new DateManager("2014-05-15");
    EXPECT_EQ("New Date: 2014/5/25", dateManager->calculateFutureDate(10));
-   dateManager = new DateManager("2012/02/01");
+   dateManager = new DateManager("2012-02-01");
    EXPECT_EQ("New Date: 2012/2/29", dateManager->calculateFutureDate(28));
    // Test More Than One Change
-   dateManager = new DateManager("1999/11/17");
+   dateManager = new DateManager("1999-11-17");
    EXPECT_EQ("New Date: 2000/2/9", dateManager->calculateFutureDate(84));
-   dateManager = new DateManager("2007/11/17");
+   dateManager = new DateManager("2007-11-17");
    EXPECT_EQ("New Date: 2009/4/1", dateManager->calculateFutureDate(500));
 }
 
