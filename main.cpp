@@ -21,6 +21,11 @@ int main(int argc, char *argv[]) {
   {
     cout << "Enter command" << endl;;
     cin >> command;
+    
+    for (int i = 0; i < command.length(); i++)
+    {
+      command[i] = tolower(command[i]);
+    }
 
     if(command == "quit")
     {
