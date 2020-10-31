@@ -7,6 +7,9 @@ TEST(DateManagerTest, DateDifference)
 {
   DateManager * dateManager = new DateManager("2020-03-19");
   //Valid dates
+
+  //Same Year
+
   //Same Month
   EXPECT_EQ(5, dateManager->getDateDifference("2020-03-24"));
   //Next Month
@@ -15,8 +18,40 @@ TEST(DateManagerTest, DateDifference)
   //More Than One Month
   EXPECT_EQ(209, dateManager->getDateDifference("2020-10-14"));
   EXPECT_EQ(221, dateManager->getDateDifference("2020-10-26"));
-  
+
+  //Year Difference
+
+  //Same Month
+  EXPECT_EQ(370, dateManager->getDateDifference("2021-03-24"));
+  //Next Month
+  EXPECT_EQ(392, dateManager->getDateDifference("2021-04-15"));
+  EXPECT_EQ(403, dateManager->getDateDifference("2021-04-26"));
+  //More Than One Month
+  EXPECT_EQ(574, dateManager->getDateDifference("2021-10-14"));
+  EXPECT_EQ(586, dateManager->getDateDifference("2021-10-26"));
+
+  //More than One Year (4 years)
+
+  //Same Month
+  EXPECT_EQ(1466, dateManager->getDateDifference("2024-03-24"));
+  //Next Month
+  EXPECT_EQ(1488, dateManager->getDateDifference("2024-04-15"));
+  EXPECT_EQ(1499, dateManager->getDateDifference("2024-04-26"));
+  //More Than One Month
+  EXPECT_EQ(1670, dateManager->getDateDifference("2024-10-14"));
+  EXPECT_EQ(1682, dateManager->getDateDifference("2024-10-26"));
+
   //Out of order dates
+
+  //Previous Year
+  EXPECT_EQ(-1, dateManager->getDateDifference("2019-03-19"));
+  
+  //Previous Month
+  EXPECT_EQ(-1, dateManager->getDateDifference("2020-02-19"));
+
+  //Previous Day
+  EXPECT_EQ(-1, dateManager->getDateDifference("2020-03-18"));
+
 }
 
 

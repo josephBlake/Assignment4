@@ -165,18 +165,15 @@ int DateManager::getDateDifference(string secondDate)
   }
   else
   {
+    //We do not go through the full first month so we subtract however many days have already passed.
+     days += checkMonth(currentMonth, currentYear) - firstDay;
+     currentMonth++;
     //Loop through the remaining months adding the days past in each month
     while (currentMonth != secondMonth || currentYear != secondYear)
     {
-      //We do not go through the full first month so we subtract however many days have already passed.
-      if (currentMonth == firstMonth)
-      {
-        days += checkMonth(currentMonth, currentYear) - firstDay;
-      }
-      else //Add the number of days in the month if we went through the whole month
-      {
-        days += checkMonth(currentMonth, currentYear);      
-      }
+      //Add the number of days in the month if we went through the whole month
+      days += checkMonth(currentMonth, currentYear);      
+      
       //Increment the current month and if we go to a new year increment current year and set the month to 1.
       if (currentMonth == 12)
       {
